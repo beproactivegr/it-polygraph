@@ -8,7 +8,7 @@ IT can byte you!
 
 IT can occasionally be more dangerous and harmful than a hacker.
 
-Use **IT Polygraph** to conduct a quick and easy audit of your IT infrastructure to ensure that it is secure and is functioning properly. You should audit your systems and identify potential security weaknesses that could be exploited by attackers. Regular auditing and monitoring of your systems can help you ensure that your IT infrastructure is secure and is functioning properly.
+Use **IT Polygraph** to conduct a quick and easy audit of your IT infrastructure to ensure that it is secure and is functioning properly. You should audit your systems and identify potential security weaknesses that could be exploited by attackers. Regular auditing and monitoring of your systems can help you ensure that your business is secure and protected against cyber attacks.
 
 ---
 
