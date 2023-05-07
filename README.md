@@ -2,7 +2,7 @@
 
 Do you trust your IT? Audit your systems yourself and find out!
 
-Use IT Polygraph to conduct a quick and easy audit of your IT infrastructure to ensure that it is secure and functioning properly. 
+Use IT Polygraph to conduct a quick and easy audit of your IT infrastructure to ensure that it is secure and is functioning properly. 
 
 Is your IT lying to you? Are you paying for a bogus IT service?
 
@@ -12,18 +12,19 @@ IT can occasionally be more dangerous and harmful than a hacker.
 
 ---
 
-Are you running:
+**Are you running**:
 
 * Unpatched systems?
 * Unhardened systems?
 * Unnecessary services?
 
-Do you have:
+**Do you have**:
 
 * Unnecessary or sensitive exposed services to the Internet?
 * Open ports?
+* Remote desktop (3389 port) exposed to the Internet?
 
-Is you IT:
+**Is you IT**:
 
 * Disabling, circumventing or bypassing organization's security to make things easier?
 * Paying ransomware demands secretly to avoid exposure?
