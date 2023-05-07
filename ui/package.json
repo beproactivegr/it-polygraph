@@ -1,0 +1,31 @@
+{
+  "name": "it-polygraph",
+  "productName": "IT Polygraph",
+  "version": "1.0.0",
+  "description": "Do you trust your IT? Audit your systems yourself and find out! Use IT Polygraph to conduct a quick and easy audit of your IT infrastructure to ensure that it is secure and is functioning properly.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "keywords": [],
+  "author": {
+    "name": "beproactivegr",
+    "email": "social@beproactive.gr"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.1.1",
+    "@electron-forge/maker-deb": "^6.1.1",
+    "@electron-forge/maker-rpm": "^6.1.1",
+    "@electron-forge/maker-squirrel": "^6.1.1",
+    "@electron-forge/maker-zip": "^6.1.1",
+    "electron": "24.2.0"
+  }
+}
