@@ -20,7 +20,7 @@ IT can occasionally be more dangerous and harmful than a hacker.
 
 **Do you have**:
 
-* Unnecessary or sensitive exposed services to the Internet?
+* Unnecessary or sensitive services exposed to the Internet?
 * Open ports?
 * Remote desktop (3389 port) exposed to the Internet?
 
