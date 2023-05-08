@@ -1,8 +1,10 @@
 {
   "name": "it-polygraph",
+  "bin": "src/index.js",
   "productName": "IT Polygraph",
+  "copyright": "Copyright © 2023 beproactive.gr",
   "version": "1.0.0",
-  "description": "Do you trust your IT? Audit your systems yourself and find out! Use IT Polygraph to conduct a quick and easy audit of your IT infrastructure to ensure that it is secure and is functioning properly.",
+  "description": "Do you trust your IT? Audit your systems yourself and find out!",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -18,7 +20,18 @@
   },
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^5.2.3",
     "electron-squirrel-startup": "^1.0.0"
+  },
+  "pkg": {
+    "scripts": "src/**/*.js",
+    "assets": [
+      "src/renderer/**/*"
+    ],
+    "targets": [
+      "node18-win-x64"
+    ],
+    "outputPath": "Release"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.1.1",
@@ -26,6 +39,9 @@
     "@electron-forge/maker-rpm": "^6.1.1",
     "@electron-forge/maker-squirrel": "^6.1.1",
     "@electron-forge/maker-zip": "^6.1.1",
-    "electron": "24.2.0"
+    "electron": "24.2.0",
+    "electron-builder": "^23.6.0",
+    "bower": "^1.8.14",
+    "pkg": "^5.8.1"
   }
 }
