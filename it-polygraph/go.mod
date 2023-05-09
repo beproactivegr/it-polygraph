@@ -1,6 +1,6 @@
 module itpolygraph
 
-go 1.18
+go 1.20
 
 require github.com/wailsapp/wails/v2 v2.4.1
 
@@ -29,5 +29,3 @@ require (
 	golang.org/x/sys v0.5.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
 )
-
-// replace github.com/wailsapp/wails/v2 v2.4.1 => C:\Users\GeorgeKarpouzas\go\pkg\mod

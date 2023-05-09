@@ -1,4 +1,4 @@
-package itpolygraph
+package main
 
 import "context"
 
