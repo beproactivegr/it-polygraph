@@ -6,20 +6,20 @@ import {Greet} from '../wailsjs/go/main/App';
 
 import * as bootstrap from 'bootstrap'
 
-document.querySelector('#app').innerHTML = `
-    <img id="logo" class="logo">
-      <div class="result" id="result">Please enter your name below 👇</div>
-      <div class="input-box" id="input">
-        <input class="input" id="name" type="text" autocomplete="off" />
-        <button class="btn" onclick="greet()">Greet</button>
-      </div>
-    </div>
-`;
-document.getElementById('logo').src = logo;
+// document.querySelector('#app').innerHTML = `
+//     <img id="logo" class="logo">
+//       <div class="result" id="result">Please enter your name below 👇</div>
+//       <div class="input-box" id="input">
+//         <input class="input" id="name" type="text" autocomplete="off" />
+//         <button class="btn" onclick="greet()">Greet</button>
+//       </div>
+//     </div>
+// `;
+//document.getElementById('logo').src = logo;
 
-let nameElement = document.getElementById("name");
-nameElement.focus();
-let resultElement = document.getElementById("result");
+// let nameElement = document.getElementById("name");
+// nameElement.focus();
+// let resultElement = document.getElementById("result");
 
 // Setup the greet function
 window.greet = function () {
@@ -43,3 +43,4 @@ window.greet = function () {
         console.error(err);
     }
 };
+

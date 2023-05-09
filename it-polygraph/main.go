@@ -3,7 +3,10 @@ package main
 import (
 	"embed"
 	"github.com/wailsapp/wails/v2/pkg/logger"
+	"github.com/wailsapp/wails/v2/pkg/menu"
+	"github.com/wailsapp/wails/v2/pkg/menu/keys"
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
+	"github.com/wailsapp/wails/v2/pkg/runtime"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
@@ -16,6 +19,13 @@ var assets embed.FS
 func main() {
 	// Create an instance of the app structure
 	app := NewApp()
+
+	AppMenu := menu.NewMenu()
+	FileMenu := AppMenu.AddSubmenu("File")
+	FileMenu.AddSeparator()
+	FileMenu.AddText("Quit", keys.CmdOrCtrl("q"), func(_ *menu.CallbackData) {
+		runtime.Quit(app.ctx)
+	})
 
 	// Create application with options
 	err := wails.Run(&options.App{
@@ -33,6 +43,7 @@ func main() {
 		StartHidden:       false,
 		HideWindowOnClose: false,
 		AlwaysOnTop:       false,
+		Menu:              AppMenu,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
