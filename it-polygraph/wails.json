@@ -7,7 +7,14 @@
   "frontend:dev:watcher": "npm run dev",
   "frontend:dev:serverUrl": "auto",
   "author": {
-    "name": "beproactivegr",
+    "name": "BeProactive.gr",
     "email": "social@beproactive.gr"
+  },
+  "info": {
+    "companyName": "BeProactive",
+    "productName": "IT Polygraph",
+    "productVersion": "1.0.0",
+    "copyright": "Copyright © 2023 BeProactive",
+    "comments": "Do you trust your IT? Audit your systems yourself and find out! Use IT Polygraph to conduct a quick and easy audit of your IT infrastructure to ensure that it is secure and is functioning properly."
   }
 }
