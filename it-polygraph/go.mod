@@ -2,7 +2,10 @@ module itpolygraph
 
 go 1.20
 
-require github.com/wailsapp/wails/v2 v2.4.1
+require (
+	github.com/FairyTale5571/go-ip-api v0.0.0-20210718002603-1cfa9347e1db
+	github.com/wailsapp/wails/v2 v2.4.1
+)
 
 require (
 	github.com/bep/debounce v1.2.1 // indirect

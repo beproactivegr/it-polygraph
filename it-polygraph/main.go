@@ -7,6 +7,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/menu/keys"
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
+	"itpolygraph/net"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
@@ -19,6 +20,10 @@ var assets embed.FS
 func main() {
 	// Create an instance of the app structure
 	app := NewApp()
+	net := &net.Net{}
+
+	height := 720
+	width := 1280
 
 	AppMenu := menu.NewMenu()
 	FileMenu := AppMenu.AddSubmenu("File")
@@ -30,12 +35,12 @@ func main() {
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:             "IT Polygraph",
-		Width:             1280,
-		Height:            720,
-		MinWidth:          1280,
-		MinHeight:         720,
-		MaxWidth:          1280,
-		MaxHeight:         720,
+		Width:             width,
+		Height:            height,
+		MinWidth:          width,
+		MinHeight:         height,
+		MaxWidth:          width,
+		MaxHeight:         height,
 		DisableResize:     false,
 		Fullscreen:        false,
 		WindowStartState:  options.Normal,
@@ -55,6 +60,7 @@ func main() {
 		OnShutdown:         app.shutdown,
 		Bind: []interface{}{
 			app,
+			net,
 		},
 
 		Windows: &windows.Options{

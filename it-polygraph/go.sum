@@ -1,3 +1,5 @@
+github.com/FairyTale5571/go-ip-api v0.0.0-20210718002603-1cfa9347e1db h1:HlafGnda3cAaw8ZNJgWg1bhVvWCjGL4NW85fd8X5JRE=
+github.com/FairyTale5571/go-ip-api v0.0.0-20210718002603-1cfa9347e1db/go.mod h1:6gIT0j5vYxXb7IRbTSjPrXOy2s7wPWJ+FFU/ck/2GZM=
 github.com/bep/debounce v1.2.1 h1:v67fRdBA9UQu2NhLFXrSg0Brw7CexQekrBwDMM8bzeY=
 github.com/bep/debounce v1.2.1/go.mod h1:H8yggRPQKLUhUoqrJC1bO2xNya7vanpDl7xR3ISbCJ0=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

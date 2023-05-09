@@ -1,40 +1,18 @@
 import './style.css';
 import './app.css';
 
-import logo from './assets/images/logo-universal.png';
-import {Greet} from '../wailsjs/go/main/App';
+// import $ from 'jquery';
+import {Exit} from '../wailsjs/go/main/App';
+import {GetHostname, GetInternetIPAddress, GetLocalIPAddress} from "../wailsjs/go/net/Net";
+// import * as bootstrap from 'bootstrap'
 
-import * as bootstrap from 'bootstrap'
-
-// document.querySelector('#app').innerHTML = `
-//     <img id="logo" class="logo">
-//       <div class="result" id="result">Please enter your name below 👇</div>
-//       <div class="input-box" id="input">
-//         <input class="input" id="name" type="text" autocomplete="off" />
-//         <button class="btn" onclick="greet()">Greet</button>
-//       </div>
-//     </div>
-// `;
-//document.getElementById('logo').src = logo;
-
-// let nameElement = document.getElementById("name");
+// let topMenu = document.getElementById("top-menu");
 // nameElement.focus();
-// let resultElement = document.getElementById("result");
 
-// Setup the greet function
-window.greet = function () {
-    // Get name
-    let name = nameElement.value;
-
-    // Check if the input is empty
-    if (name === "") return;
-
-    // Call App.Greet(name)
+window.exit = function () {
     try {
-        Greet(name)
+        Exit()
             .then((result) => {
-                // Update result with data back from App.Greet()
-                resultElement.innerText = result;
             })
             .catch((err) => {
                 console.error(err);
@@ -44,3 +22,47 @@ window.greet = function () {
     }
 };
 
+window.gethostname = function () {
+    try {
+        let hostnameResult = document.getElementById("hostname-result");
+        GetHostname()
+            .then((result) => {
+                hostnameResult.innerText = result;
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+window.getlocalIPaddress = function () {
+    try {
+        let ipAddrResult = document.getElementById("ipaddress-result");
+        GetLocalIPAddress()
+            .then((result) => {
+                ipAddrResult.innerText = result;
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+window.getpublicIPaddress = function () {
+    try {
+        let publicIpAddrResult = document.getElementById("publicaddress-result");
+        GetInternetIPAddress()
+            .then((result) => {
+                publicIpAddrResult.innerText = result;
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    } catch (err) {
+        console.error(err);
+    }
+};
