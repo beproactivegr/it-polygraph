@@ -20,7 +20,7 @@ var assets embed.FS
 func main() {
 	// Create an instance of the app structure
 	app := NewApp()
-	net := &net.Net{}
+	mynet := &net.Net{}
 
 	height := 720
 	width := 1280
@@ -60,7 +60,7 @@ func main() {
 		OnShutdown:         app.shutdown,
 		Bind: []interface{}{
 			app,
-			net,
+			mynet,
 		},
 
 		Windows: &windows.Options{

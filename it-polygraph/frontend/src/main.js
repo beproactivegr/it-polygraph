@@ -1,13 +1,10 @@
 import './style.css';
 import './app.css';
 
-// import $ from 'jquery';
+import $ from 'jquery';
 import {Exit} from '../wailsjs/go/main/App';
 import {GetHostname, GetInternetIPAddress, GetLocalIPAddress} from "../wailsjs/go/net/Net";
-// import * as bootstrap from 'bootstrap'
-
-// let topMenu = document.getElementById("top-menu");
-// nameElement.focus();
+import * as bootstrap from 'bootstrap'
 
 window.exit = function () {
     try {

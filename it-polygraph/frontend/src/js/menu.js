@@ -17,7 +17,7 @@ function loadDashboard() {
                               <i class="fas fa-computer"></i><span class="data-result" id="hostname-result">
                             </div>
                             <div class="col-5">
-                              
+
                             </div>
                             <div class="col-2">
                               <i class="fas fa-check"></i>
@@ -31,7 +31,7 @@ function loadDashboard() {
                               <i class="fas fa-network-wired"></i><span class="data-result" id="ipaddress-result">
                             </div>
                             <div class="col-5">
-                              
+
                             </div>
                             <div class="col-2">
                               <i class="fas fa-check"></i>
@@ -47,7 +47,7 @@ function loadDashboard() {
                               <i class="fas fa-globe"></i><span class="data-result" id="publicaddress-result">
                             </div>
                             <div class="col-5">
-                              
+
                             </div>
                             <div class="col-2">
                               <i class="fas fa-check"></i>
@@ -55,15 +55,15 @@ function loadDashboard() {
                         </div>
                     </div>
                     <div class="col-6 border border-dark infobox">
-                        
+
                     </div>
                 </div>
                  <div class="row">
                     <div class="col-6 border border-dark infobox">
-                        
+
                     </div>
                     <div class="col-6 border border-dark infobox">
-                        
+
                     </div>
                 </div>
             </div>
