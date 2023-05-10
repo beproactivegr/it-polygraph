@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 function loadDashboard() {
     document.querySelector('#topmenucontainer').innerHTML = ``;
     document.querySelector('#main-body').innerHTML = `
@@ -76,30 +78,32 @@ function loadDashboard() {
     getpublicIPaddress("publicaddress-result");
 }
 
-$(document).ready(function () {
+export function OnLoad() {
+    $(document).ready(function () {
 
-    loadDashboard();
-
-    $('.dashboard-nav .dashboard-nav-list a').on('click', function () {
-        $('.dashboard-nav .dashboard-nav-list').find('a.active').removeClass('active');
-        $(this).addClass('active');
-    });
-
-    $('#dashboard').on('click', function () {
         loadDashboard();
-    });
 
-    $('#net-scan').on('click', function () {
+        $('.dashboard-nav .dashboard-nav-list a').on('click', function () {
+            $('.dashboard-nav .dashboard-nav-list').find('a.active').removeClass('active');
+            $(this).addClass('active');
+        });
 
-        document.querySelector('#topmenucontainer').innerHTML = `
+        $('#dashboard').on('click', function () {
+            loadDashboard();
+        });
+
+        $('#net-scan').on('click', function () {
+
+            document.querySelector('#topmenucontainer').innerHTML = `
               <div class="result"><i class="fas fa-computer"></i><span class="data-result" id="hostname-result"></span></div>
               <div class="result"><i class="fas fa-network-wired"></i><span class="data-result" id="ipaddress-result"></span></div>
               <div class="result"><i class="fas fa-globe"></i><span class="data-result" id="publicaddress-result"></span></div>`;
 
-        document.querySelector('#main-body').innerHTML = ``;
+            document.querySelector('#main-body').innerHTML = ``;
 
-        gethostname("hostname-result");
-        getlocalIPaddress("ipaddress-result");
-        getpublicIPaddress("publicaddress-result");
+            gethostname("hostname-result");
+            getlocalIPaddress("ipaddress-result");
+            getpublicIPaddress("publicaddress-result");
+        });
     });
-});
+}
