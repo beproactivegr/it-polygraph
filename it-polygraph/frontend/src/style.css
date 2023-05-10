@@ -48,6 +48,8 @@ body {
 #main-body {
     /*background-color: blue;*/
     height: 600px;
+    padding-top: 15px;
+    /*padding-left: 40px;*/
 }
 
 :root {
@@ -59,4 +61,18 @@ body {
 *, *::before, *::after {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.dashboard-main {
+    background-color: white;
+    color: black;
+    margin-top: 50px;
+    margin-left: 40px;
+    margin-right: 20px;
+}
+
+.infobox {
+    height: 100px;
+    padding: 25px 5px 15px 15px;
+    text-align: left;
 }

@@ -22,12 +22,16 @@ window.exit = function () {
     }
 };
 
-window.gethostname = function () {
+window.gethostname = function (id) {
     try {
-        let hostnameResult = document.getElementById("hostname-result");
+        let element = document.getElementById(id);//"hostname-result"
+        if (element == null) {
+            return;
+        }
+
         GetHostname()
             .then((result) => {
-                hostnameResult.innerText = result;
+                element.innerText = result;
             })
             .catch((err) => {
                 console.error(err);
@@ -37,12 +41,16 @@ window.gethostname = function () {
     }
 };
 
-window.getlocalIPaddress = function () {
+window.getlocalIPaddress = function (id) {
     try {
-        let ipAddrResult = document.getElementById("ipaddress-result");
+        let element = document.getElementById(id);
+        if (element == null) {
+            return;
+        }
+
         GetLocalIPAddress()
             .then((result) => {
-                ipAddrResult.innerText = result;
+                element.innerText = result;
             })
             .catch((err) => {
                 console.error(err);
@@ -52,12 +60,16 @@ window.getlocalIPaddress = function () {
     }
 };
 
-window.getpublicIPaddress = function () {
+window.getpublicIPaddress = function (id) {
     try {
-        let publicIpAddrResult = document.getElementById("publicaddress-result");
+        let element = document.getElementById(id);
+        if (element == null) {
+            return;
+        }
+
         GetInternetIPAddress()
             .then((result) => {
-                publicIpAddrResult.innerText = result;
+                element.innerText = result;
             })
             .catch((err) => {
                 console.error(err);
