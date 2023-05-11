@@ -1,4 +1,4 @@
-@import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap/dist/css/bootstrap.css";
 @import "assets/fontawesome-free-6.4.0-web/css/all.css";
 @import "assets/css/menu.css";
 
@@ -75,4 +75,12 @@ body {
     height: 100px;
     padding: 25px 5px 15px 15px;
     text-align: left;
+}
+
+.tooltip-inner {
+    white-space: pre-wrap;
+}
+
+.mytooltip {
+
 }

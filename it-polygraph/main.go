@@ -2,16 +2,16 @@ package main
 
 import (
 	"embed"
+	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/logger"
 	"github.com/wailsapp/wails/v2/pkg/menu"
 	"github.com/wailsapp/wails/v2/pkg/menu/keys"
+	"github.com/wailsapp/wails/v2/pkg/options"
+	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 	"itpolygraph/net"
-
-	"github.com/wailsapp/wails/v2"
-	"github.com/wailsapp/wails/v2/pkg/options"
-	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
+	"itpolygraph/nmap"
 )
 
 //go:embed all:frontend/dist
@@ -21,6 +21,7 @@ func main() {
 	// Create an instance of the app structure
 	app := NewApp()
 	mynet := &net.Net{}
+	nmap := &nmap.Nmap{}
 
 	height := 720
 	width := 1280
@@ -61,6 +62,7 @@ func main() {
 		Bind: []interface{}{
 			app,
 			mynet,
+			nmap,
 		},
 
 		Windows: &windows.Options{

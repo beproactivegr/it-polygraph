@@ -1,5 +1,6 @@
 import {Exit} from "../wailsjs/go/main/App";
 import {GetHostname, GetInternetIPAddress, GetLocalIPAddress} from "../wailsjs/go/net/Net";
+import {NmapExists} from "../wailsjs/go/nmap/Nmap";
 
 export function SetupGoFunctions() {
     window.exit = function () {
@@ -63,6 +64,37 @@ export function SetupGoFunctions() {
             GetInternetIPAddress()
                 .then((result) => {
                     element.innerText = result;
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    window.nmapinstalled = function (id, iconId) {
+        try {
+            let element = document.getElementById(id);
+            if (element == null) {
+                return;
+            }
+
+            let elementIcon = document.getElementById(iconId);
+            if (elementIcon == null) {
+                return;
+            }
+
+            NmapExists()
+                .then((result) => {
+                    if (result === "true") {
+                        element.innerText = "Installed";
+                        elementIcon.innerHTML = `<i class="fas fa-check"></i>`;
+                    } else {
+                        element.innerText = "Not Installed";
+                        elementIcon.innerHTML = `<i class="fas fa-xmark"></i>`;
+                    }
+
                 })
                 .catch((err) => {
                     console.error(err);
