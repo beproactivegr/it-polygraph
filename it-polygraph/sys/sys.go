@@ -1,6 +1,8 @@
 package sys
 
-import "os/exec"
+import (
+	"os/exec"
+)
 
 type Sys struct {
 }
@@ -25,4 +27,16 @@ func (s *Sys) ExecuteCmd(cmd string, arg ...string) string {
 	}
 
 	return string(out)
+}
+
+func (s *Sys) ExecuteExternalCmdNoOutput(cmd string) bool {
+	var command *exec.Cmd
+
+	command = exec.Command("cmd.exe", "/C", cmd)
+
+	if err := command.Run(); err != nil {
+		return false
+	}
+
+	return true
 }

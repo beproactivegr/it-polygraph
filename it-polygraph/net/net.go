@@ -2,11 +2,83 @@ package net
 
 import (
 	goip "github.com/FairyTale5571/go-ip-api"
+	"io"
 	"net"
+	"net/http"
+	"net/url"
 	"os"
+	"path/filepath"
+	"strings"
+	"sync"
 )
 
 type Net struct {
+}
+
+func (n *Net) DownloadFile(fileUrl string) string {
+
+	var wg sync.WaitGroup
+	var fileName string
+
+	wg.Add(1)
+
+	go func(fileUrl string) {
+		defer wg.Done()
+
+		var err error
+		var furl *url.URL
+		var file *os.File
+		var resp *http.Response
+
+		furl, err = url.Parse(fileUrl)
+		if err != nil {
+			return
+		}
+
+		path := furl.Path
+		segments := strings.Split(path, "/")
+		fileName = segments[len(segments)-1]
+
+		fileName = filepath.Join(os.TempDir(), fileName)
+
+		file, err = os.Create(fileName)
+
+		if err != nil {
+			return
+		}
+
+		defer file.Close()
+
+		client := http.Client{
+			CheckRedirect: func(r *http.Request, via []*http.Request) error {
+				r.URL.Opaque = r.URL.Path
+				return nil
+			},
+		}
+
+		resp, err = client.Get(fileUrl)
+
+		if err != nil {
+			return
+		}
+
+		defer resp.Body.Close()
+
+		if resp.StatusCode != http.StatusOK {
+			return
+		}
+
+		_, err = io.Copy(file, resp.Body)
+
+		if err != nil {
+			return
+		}
+
+	}(fileUrl)
+
+	wg.Wait()
+
+	return fileName
 }
 
 //func isPrivateIP(ip net.IP) bool {
@@ -53,13 +125,14 @@ func (n *Net) GetLocalIPAddress() string {
 	}
 
 	localAddr := conn.LocalAddr().(*net.UDPAddr)
+
 	return localAddr.IP.String()
 }
 
 func (n *Net) GetInternetIPAddress() string {
 	var err error
 	var result *goip.Location
-	
+
 	client := goip.NewClient()
 	result, err = client.GetLocation()
 

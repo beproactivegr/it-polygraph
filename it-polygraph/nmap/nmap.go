@@ -1,18 +1,39 @@
 package nmap
 
-import "itpolygraph/sys"
+import (
+	"itpolygraph/net"
+	"itpolygraph/sys"
+)
 
 type Nmap struct{}
 
 func (n *Nmap) NmapExists() string {
 
-	sys := &sys.Sys{}
+	mysys := &sys.Sys{}
 
-	res := sys.ExecuteCmd("nmap", "--version")
+	res := mysys.ExecuteCmd("nmap", "--version")
 
 	if res == "" {
 		return "false"
 	}
 
 	return "true"
+}
+
+func (n *Nmap) InstallNmap(url string) string {
+
+	mynet := &net.Net{}
+	mysys := &sys.Sys{}
+
+	filename := mynet.DownloadFile(url)
+
+	if filename == "" {
+		return "false"
+	}
+
+	if mysys.ExecuteExternalCmdNoOutput(filename) {
+		return "true"
+	}
+
+	return "false"
 }

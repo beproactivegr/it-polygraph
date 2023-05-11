@@ -77,7 +77,8 @@ function loadDashboard() {
                             <div class="col-5">
                               <b>NMAP Status</b>&nbsp;<i class="fa-regular fa-circle-question"></i><br>
                               <i class="fas fa-cube"></i>
-                                <span class="data-result" id="nmap-result"> </span>
+                                <span class="data-result" id="nmap-result"></span>
+<!--                                <span id="nmap-download-result"></span>-->
                             </div>
                             <div class="col-5">
 
@@ -101,16 +102,7 @@ function loadDashboard() {
     </div>
     `;
 
-    // let nmapResult = document.getElementById('#nmap-result');
     nmapinstalled("nmap-result", "nmap-result-icon");
-    // alert(window.isnmapinstalled);
-    // nmapResult.innerText = `IsNmapInstalled`;
-    // if (window.isnmapinstalled === "true") {
-    //     nmapResult.innerText = `<span class="status-green">Installed</span>`;
-    // } else {
-    //     nmapResult.innerText = `<span class="status-red">Not Installed</span>`;
-    // }
-
     gethostname("hostname-result");
     getlocalIPaddress("ipaddress-result");
     getpublicIPaddress("publicaddress-result");
