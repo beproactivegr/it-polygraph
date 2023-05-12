@@ -1,19 +1,14 @@
 import $ from "jquery";
 // import * as jQuery from 'jquery';
-
 // window.$ = window.jQuery = jQuery;
 // import 'jquery-ui-dist';
-
 // window.$ = window.jQuery = $;
 // import 'jquery-ui/ui/widgets/tooltip.js';
-
 // import jQuery from 'jquery';
-//
 // window.jQuery = jQuery;
 // await import("jquery-ui-dist/jquery-ui");
 
 function loadDashboard() {
-    // $('.mytooltip').tooltip({html: true})
 
     document.querySelector('#topmenucontainer').innerHTML = ``;
     document.querySelector('#main-body').innerHTML = `

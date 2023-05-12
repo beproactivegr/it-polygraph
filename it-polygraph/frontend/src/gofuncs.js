@@ -127,6 +127,7 @@ window.installnmap = function (url) {
 <!--                    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">-->
                       <div id="liveToast1" data-bs-delay="10000" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-header">
+                            <i class="fas fa-circle-info"></i>
 <!--                          <img src="..." class="rounded me-2" alt="...">-->
                           <strong class="me-auto">Bootstrap</strong>
                           <small>11 mins ago</small>
