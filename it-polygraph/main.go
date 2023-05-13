@@ -12,6 +12,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 	"itpolygraph/net"
 	"itpolygraph/nmap"
+	"itpolygraph/sys"
 )
 
 //go:embed all:frontend/dist
@@ -22,6 +23,7 @@ func main() {
 	app := NewApp()
 	mynet := &net.Net{}
 	nmap := &nmap.Nmap{}
+	mysys := &sys.Sys{}
 
 	height := 720
 	width := 1280
@@ -62,6 +64,7 @@ func main() {
 		Bind: []interface{}{
 			app,
 			mynet,
+			mysys,
 			nmap,
 		},
 

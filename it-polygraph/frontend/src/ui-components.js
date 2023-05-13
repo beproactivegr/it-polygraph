@@ -1,6 +1,20 @@
 import * as bootstrap from 'bootstrap';
 
-export function ShowToast(toastID, title, message, toastContainerID, append = false) {
+export function ShowToast(toastID) {
+
+    let tt = document.getElementById(toastID);
+
+    if (tt == null) {
+        return false;
+    }
+
+    let toast1 = new bootstrap.Toast(tt);
+    toast1.show();
+
+    return true;
+}
+
+export function CreateToast(toastID, title, message, toastContainerID, append = true) {
 
     let container = document.getElementById(toastContainerID);
     if (container == null) {
@@ -12,7 +26,7 @@ export function ShowToast(toastID, title, message, toastContainerID, append = fa
           <div class="toast-header">
             <i class="fas fa-circle-info"></i>&nbsp;
             <strong class="me-auto">${title}</strong>
-<!--            <small class="text-muted">just now</small>-->
+            <small class="text-muted"></small>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
           </div>
           <div class="toast-body">
@@ -22,14 +36,9 @@ export function ShowToast(toastID, title, message, toastContainerID, append = fa
 
     if (append === true) {
         container.innerHTML += data;
-        alert('here');
     } else {
         container.innerHTML = data;
     }
-
-    const toast = document.getElementById(toastID)
-    const toast1 = new bootstrap.Toast(toast)
-    toast1.show()
 
     return true;
 }
