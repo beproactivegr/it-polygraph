@@ -3,15 +3,20 @@ import {GetHostname, GetInternetIPAddress, GetLocalIPAddress} from "../wailsjs/g
 import {NmapExists, InstallNmap} from "../wailsjs/go/nmap/Nmap";
 // import $ from 'jquery';
 
-import {CreateToast, ShowToast} from "./ui-components";
+import {
+    CreateErrorToast,
+    CreateInfoToast,
+    CreateRandomIDToast,
+    CreateToast,
+    CreateWarnToast,
+    ShowToast
+} from "./ui-components";
 
 // import * as jQuery from 'jquery';
 
-let nmapDownloading = false;
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+// function sleep(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+// }
 
 export function SetupGoFunctions() {
     window.exit = function () {
@@ -101,10 +106,14 @@ export function SetupGoFunctions() {
                     if (result === "true") {
                         element.innerText = "Installed";
                         elementIcon.innerHTML = `<i class="fas fa-check"></i>`;
+                        CreateInfoToast('Download NMAP',
+                            'The nmap is not installed and it will be downloaded in the background!');
                         installnmap('https://nmap.org/dist/nmap-7.93-setup.exe');
                     } else {
                         element.innerText = "Not Installed";
                         elementIcon.innerHTML = `<i class="fas fa-xmark"></i>`;
+                        CreateInfoToast('Download NMAP',
+                            'The nmap is not installed and it will be downloaded in the background!');
                         installnmap('https://nmap.org/dist/nmap-7.93-setup.exe');
                     }
 
@@ -121,31 +130,12 @@ export function SetupGoFunctions() {
 window.installnmap = function (url) {
     try {
 
-        if (nmapDownloading === true) {
-            //show a toast here!!
-            return false;
-        }
-
-        nmapDownloading = true;
-
         InstallNmap(url)
             .then(async (result) => {
                 if (result === "true") {
-                    nmapDownloading = false;
+                    CreateInfoToast('NMAP Installation', 'The nmap has been successfully installed!');
                 } else {
-
-                    let element = document.getElementById('toastcontainer');
-                    if (element == null) {
-                        return;
-                    }
-
-                    nmapDownloading = false;
-
-                    // CreateToast('toast1', 'Title1', 'This is one test!', 'toastcontainer');
-                    // CreateToast('toast2', 'Title2', 'This is a second test!', 'toastcontainer');
-                    // ShowToast('toast1');
-                    // // await sleep(4000);
-                    // ShowToast('toast2');
+                    CreateErrorToast('NMAP Installation', 'An error occurred during nmap installation!');
                 }
             })
             .catch((err) => {
