@@ -1,11 +1,18 @@
 package nmap
 
 import (
+	"errors"
 	"itpolygraph/net"
 	"itpolygraph/sys"
+	"os"
+	"sync"
 )
 
-type Nmap struct{}
+type Nmap struct {
+	NmapFilename string
+	download     sync.Mutex
+	install      sync.Mutex
+}
 
 func (n *Nmap) NmapExists() string {
 
@@ -20,20 +27,36 @@ func (n *Nmap) NmapExists() string {
 	return "true"
 }
 
-func (n *Nmap) InstallNmap(url string) string {
+func (n *Nmap) DownloadNmap(url string) string {
+
+	n.download.Lock()
+	defer n.download.Unlock()
 
 	mynet := &net.Net{}
-	mysys := &sys.Sys{}
 
-	filename := mynet.DownloadFile(url)
+	n.NmapFilename = mynet.DownloadFile(url)
 
-	if filename == "" {
+	if n.NmapFilename == "" {
 		return "false"
 	}
 
-	if mysys.ExecuteExternalCmdNoOutput(filename) {
-		return "true"
+	return "true"
+}
+
+func (n *Nmap) InstallNmap() string {
+
+	n.install.Lock()
+	defer n.install.Unlock()
+
+	mysys := &sys.Sys{}
+
+	if _, err := os.Stat(n.NmapFilename); errors.Is(err, os.ErrNotExist) {
+		return "false"
 	}
 
-	return "false"
+	if !mysys.ExecuteExternalCmdNoOutput(n.NmapFilename) {
+		return "false"
+	}
+
+	return "true"
 }

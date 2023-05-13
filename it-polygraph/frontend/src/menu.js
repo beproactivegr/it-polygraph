@@ -69,13 +69,13 @@ function loadDashboard() {
                     </div>
                     <div class="col-6 border border-dark infobox">
                         <div class="row">
-                            <div class="col-5">
+                            <div class="col-8">
                               <b>NMAP Status</b>&nbsp;<i class="fa-regular fa-circle-question"></i><br>
                               <i class="fas fa-cube"></i>
                                 <span class="data-result" id="nmap-result"></span>
 <!--                                <span id="nmap-download-result"></span>-->
                             </div>
-                            <div class="col-5">
+                            <div class="col-2">
 
                             </div>
                             <div class="col-2">

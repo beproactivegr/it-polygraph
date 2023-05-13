@@ -4,3 +4,5 @@
 export function ExecuteCmd(arg1:string,arg2:Array<string>):Promise<string>;
 
 export function ExecuteExternalCmdNoOutput(arg1:string):Promise<boolean>;
+
+export function Restart():Promise<void>;

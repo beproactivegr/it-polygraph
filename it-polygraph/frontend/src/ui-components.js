@@ -35,7 +35,7 @@ export function CreateRandomIDToast(title, message, show = true, append = true) 
     return CreateToast(uuid(), title, message, 'info', show, append);
 }
 
-export function CreateToast(toastID, title, message, type, show = true, append = true) {
+export function CreateToast(toastID, title, message, type, show = true, append = true, timeout = 5000) {
 
     let toastContainerID = 'toastcontainer';
     let container = document.getElementById(toastContainerID);
@@ -60,7 +60,7 @@ export function CreateToast(toastID, title, message, type, show = true, append =
     }
 
     let data = `
-        <div id="${toastID}" class="toast" data-bs-delay="8000" role="alert" aria-live="assertive" aria-atomic="true">
+        <div id="${toastID}" class="toast" data-bs-delay="${timeout}" role="alert" aria-live="assertive" aria-atomic="true">
           <div class="toast-header">
             <i class="fas fa-circle-info"></i>&nbsp
             <strong class="me-auto">${title}</strong>

@@ -1,22 +1,13 @@
 import {Exit} from "../wailsjs/go/main/App";
 import {GetHostname, GetInternetIPAddress, GetLocalIPAddress} from "../wailsjs/go/net/Net";
-import {NmapExists, InstallNmap} from "../wailsjs/go/nmap/Nmap";
+import {NmapExists, InstallNmap, DownloadNmap} from "../wailsjs/go/nmap/Nmap";
 // import $ from 'jquery';
 
 import {
     CreateErrorToast,
     CreateInfoToast,
-    CreateRandomIDToast,
-    CreateToast,
-    CreateWarnToast,
-    ShowToast
 } from "./ui-components";
-
-// import * as jQuery from 'jquery';
-
-// function sleep(ms) {
-//     return new Promise(resolve => setTimeout(resolve, ms));
-// }
+import {Restart} from "../wailsjs/go/sys/Sys";
 
 export function SetupGoFunctions() {
     window.exit = function () {
@@ -104,19 +95,15 @@ export function SetupGoFunctions() {
             NmapExists()
                 .then((result) => {
                     if (result === "true") {
-                        element.innerText = "Installed";
+                        element.innerHTML = 'Installed';
                         elementIcon.innerHTML = `<i class="fas fa-check"></i>`;
-                        CreateInfoToast('Download NMAP',
-                            'The nmap is not installed and it will be downloaded in the background!');
-                        installnmap('https://nmap.org/dist/nmap-7.93-setup.exe');
                     } else {
-                        element.innerText = "Not Installed";
+                        element.innerHTML = `Not Installed&nbsp;&nbsp;
+                        <button id="nmapbtn" onclick="downloadOrInstallNmap();" class=\"btn btn-primary\">Download</button>
+                        &nbsp;&nbsp;<i id="loader" class="fas fa-spinner fa-spin" hidden></i>
+                        `;
                         elementIcon.innerHTML = `<i class="fas fa-xmark"></i>`;
-                        CreateInfoToast('Download NMAP',
-                            'The nmap is not installed and it will be downloaded in the background!');
-                        installnmap('https://nmap.org/dist/nmap-7.93-setup.exe');
                     }
-
                 })
                 .catch((err) => {
                     console.error(err);
@@ -127,16 +114,111 @@ export function SetupGoFunctions() {
     };
 }
 
-window.installnmap = function (url) {
+window.downloadOrInstallNmap = function () {
+
+    const nmapbtn = document.getElementById('nmapbtn');
+    if (nmapbtn == null) {
+        return;
+    }
+
+    if (nmapbtn.innerText === "Download") {
+        downloadnmap('https://nmap.org/dist/nmap-7.93-setup.exe');
+    } else if (nmapbtn.innerText === "Install") {
+        installnmap();
+    } else if (nmapbtn.innerText === "Restart") {
+        restart();
+    }
+}
+
+window.downloadnmap = function (url) {
     try {
 
-        InstallNmap(url)
+        const nmapbtn = document.getElementById('nmapbtn');
+        if (nmapbtn == null) {
+            return;
+        }
+        nmapbtn.disabled = true;
+        nmapbtn.innerText = "Downloading";
+
+        const loader = document.getElementById('loader');
+        if (loader == null) {
+            return;
+        }
+
+        loader.hidden = false;
+
+        DownloadNmap(url)
             .then(async (result) => {
                 if (result === "true") {
-                    CreateInfoToast('NMAP Installation', 'The nmap has been successfully installed!');
+                    CreateInfoToast('Download NMAP', 'NMAP setup download has successfully completed!');
+                    nmapbtn.disabled = false;
+                    nmapbtn.innerText = "Install";
+                    loader.hidden = true;
                 } else {
-                    CreateErrorToast('NMAP Installation', 'An error occurred during nmap installation!');
+                    CreateErrorToast('Download NMAP', 'An error occurred during NMAP setup downloading!');
+                    nmapbtn.disabled = false;
+                    nmapbtn.innerText = "Download";
+                    loader.hidden = true;
                 }
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+window.installnmap = function () {
+    try {
+
+        const nmapbtn = document.getElementById('nmapbtn');
+        if (nmapbtn == null) {
+            return;
+        }
+        nmapbtn.disabled = true;
+        nmapbtn.innerText = "Installing";
+
+        const loader = document.getElementById('loader');
+        if (loader == null) {
+            return;
+        }
+
+        loader.hidden = false;
+
+        InstallNmap()
+            .then(async (result) => {
+                if (result === "true") {
+                    CreateInfoToast('NMAP Installation', 'NMAP installation has successfully completed! Please restart the application.');
+                    nmapbtn.disabled = false;
+                    nmapbtn.innerText = "Restart";
+                    loader.hidden = true;
+                } else {
+                    CreateErrorToast('NMAP Installation', 'An error occurred during NMAP installation!');
+                    nmapbtn.disabled = false;
+                    nmapbtn.innerText = "Install";
+                    loader.hidden = true;
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+window.restart = function (url) {
+    try {
+
+        const nmapbtn = document.getElementById('nmapbtn');
+        if (nmapbtn == null) {
+            return;
+        }
+        nmapbtn.innerText = "Restarting";
+
+        Restart()
+            .then(async (result) => {
             })
             .catch((err) => {
                 console.error(err);

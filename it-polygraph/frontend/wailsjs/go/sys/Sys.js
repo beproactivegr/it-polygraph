@@ -9,3 +9,7 @@ export function ExecuteCmd(arg1, arg2) {
 export function ExecuteExternalCmdNoOutput(arg1) {
   return window['go']['sys']['Sys']['ExecuteExternalCmdNoOutput'](arg1);
 }
+
+export function Restart() {
+  return window['go']['sys']['Sys']['Restart']();
+}
