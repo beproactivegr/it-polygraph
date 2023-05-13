@@ -2,9 +2,12 @@ import {Exit} from "../wailsjs/go/main/App";
 import {GetHostname, GetInternetIPAddress, GetLocalIPAddress} from "../wailsjs/go/net/Net";
 import {NmapExists, InstallNmap} from "../wailsjs/go/nmap/Nmap";
 // import $ from 'jquery';
-import * as bootstrap from 'bootstrap';
+
+import {ShowToast} from "./ui-components";
 
 // import * as jQuery from 'jquery';
+
+var nmapDownloading = false;
 
 export function SetupGoFunctions() {
     window.exit = function () {
@@ -118,9 +121,18 @@ window.installnmap = function (url) {
         //     return;
         // }
 
+
+        if (nmapDownloading === true) {
+            //show a toast here!!
+            return false;
+        }
+
+        nmapDownloading = true;
+
         InstallNmap(url)
             .then((result) => {
                 if (result === "true") {
+                    nmapDownloading = false;
                     document.body.innerHTML += `
 <div aria-live="polite" aria-atomic="true" class="position-relative">
 <div class="toast-container position-absolute top-0 end-0 p-3">
@@ -162,44 +174,51 @@ window.installnmap = function (url) {
                     // toast2.show()
 
                 } else {
-                    document.body.innerHTML += `
-<!-- <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">&ndash;&gt;-->
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="toast1" class="toast" data-bs-delay="10000" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-<!--        <img src="..." class="rounded me-2" alt="...">-->
-        <strong class="me-auto">Bootstrap</strong>
-        <small class="text-muted">just now</small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body">
-        See? Just like this.
-      </div>
-    </div>
 
-    <div id="toast2" class="toast" data-bs-delay="10000" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-<!--        <img src="..." class="rounded me-2" alt="...">-->
-        <strong class="me-auto">Bootstrap</strong>
-        <small class="text-muted">2 seconds ago</small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body">
-        Heads up, toasts will stack automatically
-      </div>
-    </div>
-</div>`;
+                    let element = document.getElementById('toastcontainer');
+                    if (element == null) {
+                        return;
+                    }
+
+                    nmapDownloading = false;
+
+                    ShowToast('toast1', 'Title1', 'This is one test!', 'toast-container', true);
+                    ShowToast('toast2', 'Title2', 'This is a second test!', 'toast-container', true);
+
+//                     element.innerHTML = `
+//         <div id="toast1" class="toast" data-bs-delay="10000" role="alert" aria-live="assertive" aria-atomic="true">
+//           <div class="toast-header">
+//             <i class="fas fa-circle-info"></i>
+//             <strong class="me-auto">Bootstrap</strong>
+//             <small class="text-muted">just now</small>
+//             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+//           </div>
+//           <div class="toast-body">
+//             See? Just like this.
+//           </div>
+//         </div>
+//
+//         <div id="toast2" class="toast" data-bs-delay="10000" role="alert" aria-live="assertive" aria-atomic="true">
+//           <div class="toast-header">
+//             <i class="fas fa-circle-info"></i>&nbsp;
+//             <strong class="me-auto">Bootstrap</strong>
+//             <small class="text-muted">2 seconds ago</small>
+//             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+//           </div>
+//           <div class="toast-body">
+//             Heads up, toasts will stack automatically
+//           </div>
+//         </div>
+// <!--</div>-->`;
 
 
-                    const toastLiveExample1 = document.getElementById('toast1')
-                    const toast1 = new bootstrap.Toast(toastLiveExample1)
-                    toast1.show()
-
+                    // const toastLiveExample1 = document.getElementById('toast1')
+                    // const toast1 = new bootstrap.Toast(toastLiveExample1)
+                    // toast1.show()
                     //
-                    //
-                    const toastLiveExample2 = document.getElementById('toast2')
-                    const toast2 = new bootstrap.Toast(toastLiveExample2)
-                    toast2.show()
+                    // const toastLiveExample2 = document.getElementById('toast2')
+                    // const toast2 = new bootstrap.Toast(toastLiveExample2)
+                    // toast2.show()
                 }
             })
             .catch((err) => {

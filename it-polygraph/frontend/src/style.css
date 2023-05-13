@@ -50,6 +50,8 @@ body {
     height: 600px;
     padding-top: 15px;
     /*padding-left: 40px;*/
+    background-color: rgba(27, 38, 54, 1);
+
 }
 
 :root {
@@ -83,4 +85,18 @@ body {
 
 .mytooltip {
 
+}
+
+.toast-body {
+    background-color: rgba(37, 74, 129, 1);
+}
+
+.bottom-taskbar {
+    background-color: rgba(215, 231, 255, 1);
+    /*overflow: hidden;*/
+    position: fixed;
+    bottom: 0;
+    /*width: 100%;*/
+    margin-left: 4px;
+    height: 30px;
 }
