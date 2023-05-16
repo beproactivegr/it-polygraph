@@ -8,3 +8,7 @@ export function GetHostname():Promise<string>;
 export function GetInternetIPAddress():Promise<string>;
 
 export function GetLocalIPAddress():Promise<string>;
+
+export function OpenEmail(arg1:string):Promise<boolean>;
+
+export function OpenURL(arg1:string):Promise<boolean>;

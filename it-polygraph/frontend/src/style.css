@@ -92,11 +92,17 @@ body {
 }
 
 .bottom-taskbar {
-    background-color: rgba(215, 231, 255, 1);
+    /*background-color: rgba(215, 231, 255, 1);*/
+    background-color: rgba(47, 49, 141, 0.8);
     /*overflow: hidden;*/
     position: fixed;
     bottom: 0;
     /*width: 100%;*/
     margin-left: 4px;
     height: 30px;
+    padding-top: 3px;
+}
+
+.d-flex {
+    gap: 20px;
 }

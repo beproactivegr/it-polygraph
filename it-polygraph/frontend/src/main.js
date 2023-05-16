@@ -6,6 +6,8 @@ import './app.css';
 
 import {OnLoad} from "./menu";
 import {SetupGoFunctions} from "./gofuncs";
+import {LoadHandlers} from "./handlers";
 
 SetupGoFunctions();
 OnLoad();
+LoadHandlers();

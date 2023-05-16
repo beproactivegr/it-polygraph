@@ -17,3 +17,11 @@ export function GetInternetIPAddress() {
 export function GetLocalIPAddress() {
   return window['go']['net']['Net']['GetLocalIPAddress']();
 }
+
+export function OpenEmail(arg1) {
+  return window['go']['net']['Net']['OpenEmail'](arg1);
+}
+
+export function OpenURL(arg1) {
+  return window['go']['net']['Net']['OpenURL'](arg1);
+}

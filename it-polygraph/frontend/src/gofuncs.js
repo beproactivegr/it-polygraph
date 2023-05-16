@@ -1,5 +1,5 @@
 import {Exit} from "../wailsjs/go/main/App";
-import {GetHostname, GetInternetIPAddress, GetLocalIPAddress} from "../wailsjs/go/net/Net";
+import {GetHostname, GetInternetIPAddress, GetLocalIPAddress, OpenURL, OpenEmail} from "../wailsjs/go/net/Net";
 import {NmapExists, InstallNmap, DownloadNmap} from "../wailsjs/go/nmap/Nmap";
 // import $ from 'jquery';
 
@@ -80,6 +80,40 @@ export function SetupGoFunctions() {
         }
     };
 
+    window.openurl = function (url) {
+        try {
+
+            OpenURL(url)
+                .then((result) => {
+                    if (result == true) {
+                        // console.log(url);
+                    }
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    window.openemail = function (email) {
+        try {
+
+            OpenEmail(email)
+                .then((result) => {
+                    if (result == true) {
+                        // console.log(url);
+                    }
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
     window.nmapinstalled = function (id, iconId) {
         try {
             let element = document.getElementById(id);
@@ -149,7 +183,7 @@ window.downloadnmap = function (url) {
 
         DownloadNmap(url)
             .then(async (result) => {
-                if (result === "true") {
+                if (result === true) {
                     CreateInfoToast('Download NMAP', 'NMAP setup download has successfully completed!');
                     nmapbtn.disabled = false;
                     nmapbtn.innerText = "Install";
@@ -188,7 +222,7 @@ window.installnmap = function () {
 
         InstallNmap()
             .then(async (result) => {
-                if (result === "true") {
+                if (result === true) {
                     CreateInfoToast('NMAP Installation', 'NMAP installation has successfully completed! Please restart the application.');
                     nmapbtn.disabled = false;
                     nmapbtn.innerText = "Restart";
@@ -227,3 +261,4 @@ window.restart = function (url) {
         console.error(err);
     }
 };
+

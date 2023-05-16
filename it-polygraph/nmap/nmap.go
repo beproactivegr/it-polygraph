@@ -27,7 +27,11 @@ func (n *Nmap) NmapExists() string {
 	return "true"
 }
 
-func (n *Nmap) DownloadNmap(url string) string {
+func (n *Nmap) DownloadNmap(url string) bool {
+
+	if url == "" {
+		return false
+	}
 
 	n.download.Lock()
 	defer n.download.Unlock()
@@ -37,13 +41,13 @@ func (n *Nmap) DownloadNmap(url string) string {
 	n.NmapFilename = mynet.DownloadFile(url)
 
 	if n.NmapFilename == "" {
-		return "false"
+		return false
 	}
 
-	return "true"
+	return true
 }
 
-func (n *Nmap) InstallNmap() string {
+func (n *Nmap) InstallNmap() bool {
 
 	n.install.Lock()
 	defer n.install.Unlock()
@@ -51,12 +55,12 @@ func (n *Nmap) InstallNmap() string {
 	mysys := &sys.Sys{}
 
 	if _, err := os.Stat(n.NmapFilename); errors.Is(err, os.ErrNotExist) {
-		return "false"
+		return false
 	}
 
 	if !mysys.ExecuteExternalCmdNoOutput(n.NmapFilename) {
-		return "false"
+		return false
 	}
 
-	return "true"
+	return true
 }

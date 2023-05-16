@@ -88,7 +88,18 @@ function loadDashboard() {
                 </div>
                  <div class="row">
                     <div class="col-6 border border-dark infobox">
+                        <div class="col-8">
+                              <b>User Account Type</b>&nbsp
+                              <i class="fa-regular fa-circle-question mytooltip" data-toggle="tooltip" data-html="true" data-placement="right" title="The user account type controls what tasks you can perform on your computer, in some cases you may need &#013;administrative rights to perform some tasks."></i><br>
+                              <i class="fas fa-user"></i>
+                                <span class="data-result" id="acc-type-result"></span>
+                            </div>
+                            <div class="col-2">
 
+                            </div>
+                            <div class="col-2">
+                              <span id="acc-type-result-icon"></span>
+                            </div>
                     </div>
                     <div class="col-6 border border-dark infobox">
 
